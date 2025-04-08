@@ -1,0 +1,12 @@
+/projeto-pesquisa-quantitativa
+│── /questionarios
+│   ├── /pesquisa-mercado         # Arquivos principais do questionário
+│   ├── /bibliotecas-js           # Scripts JavaScript customizados
+│   └── /estilos-css              # Folhas de estilo customizadas
+│── /documentacao
+│   ├── especificacao.md          # Requisitos do questionário
+│   └── checklist-qa.md           # Lista de verificação de qualidade
+│── /scripts-uteis
+│   ├── validador-dados.js        # Script para validação de dados
+│   └── api-integration.js        # Exemplo de integração com API
+│── README.md                     # Documentação do projeto
