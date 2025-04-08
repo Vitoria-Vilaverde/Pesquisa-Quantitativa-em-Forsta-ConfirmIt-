@@ -1,0 +1,31 @@
+// questionarios/pesquisa-mercado/routing.js
+// Pula perguntas baseadas em respostas anteriores
+Survey.OnQuestionAnswered = function(question, answer) {
+    switch (question) {
+        case "Q1": // Tipo de cliente
+            if (answer == 1) { // Cliente premium
+                Survey.Show("Q2a"); // Mostra perguntas para premium
+                Survey.Hide("Q2b");
+            } else {
+                Survey.Show("Q2b"); // Mostra perguntas para regular
+                Survey.Hide("Q2a");
+            }
+            break;
+            
+        case "Q3": // Satisfação geral
+            if (answer < 3) { // Insatisfeito
+                Survey.Show("Q3a"); // Pergunta de follow-up
+                setPriorityFlag(); // Marca para análise urgente
+            }
+            break;
+    }
+};
+
+// Função para randomizar ordem de blocos
+function randomizeBlocks() {
+    var blocks = ["blocoA", "blocoB", "blocoC"];
+    var randomized = shuffleArray(blocks);
+    
+    Survey.Set("blockOrder", randomized);
+    Survey.Show(randomized[0]);
+}
