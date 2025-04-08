@@ -1,0 +1,55 @@
+// scripts-uteis/api-integration.js
+// Função para enviar dados para API externa
+function sendResponsesToCRM() {
+    var apiUrl = "https://api.crm.com/submit";
+    var surveyData = Survey.GetResponses();
+    
+    // Mapeia campos do questionário para o CRM
+    var payload = {
+        customer_id: Survey.Get("respondentID"),
+        email: surveyData.email,
+        satisfaction_score: surveyData.Q3,
+        feedback: surveyData.Q4,
+        segment: currentSegment
+    };
+    
+    // Configuração do request
+    var options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + apiKey
+        },
+        body: JSON.stringify(payload)
+    };
+    
+    // Envia dados
+    fetch(apiUrl, options)
+        .then(response => {
+            if (!response.ok) throw new Error("Erro na API");
+            return response.json();
+        })
+        .then(data => {
+            console.log("Dados enviados com sucesso:", data);
+        })
+        .catch(error => {
+            console.error("Erro:", error);
+            retryAPICall(payload); // Implementar lógica de retry
+        });
+}
+
+// Função para carregar quotas da API
+function loadQuotaData() {
+    var quotaUrl = "https://api.crm.com/quota?survey=" + Survey.Settings.SurveyID;
+    
+    fetch(quotaUrl)
+        .then(response => response.json())
+        .then(data => {
+            quotaCounts = data.currentCounts;
+            quotaLimits = data.limits;
+        })
+        .catch(error => {
+            console.error("Erro ao carregar quotas:", error);
+            useDefaultQuotas(); // Usa valores padrão se API falhar
+        });
+}
