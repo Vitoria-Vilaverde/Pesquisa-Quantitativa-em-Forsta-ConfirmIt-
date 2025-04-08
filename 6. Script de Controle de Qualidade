@@ -1,0 +1,50 @@
+// scripts-uteis/validador-dados.js
+// Valida consistência do questionário
+function validateSurveyLogic() {
+    var errors = [];
+    
+    // Verifica rotas condicionais
+    if (Survey.IsShown("Q2a") && Survey.IsShown("Q2b")) {
+        errors.push("Q2a e Q2b estão sendo mostradas simultaneamente");
+    }
+    
+    // Verifica quotas
+    for (var segment in quotaCounts) {
+        if (quotaCounts[segment] > quotaLimits[segment]) {
+            errors.push("Quota excedida para segmento " + segment);
+        }
+    }
+    
+    // Verifica questões obrigatórias
+    var requiredQuestions = ["Q1", "Q3", "email"];
+    requiredQuestions.forEach(function(q) {
+        if (!Survey.Answer(q)) {
+            errors.push("Questão obrigatória " + q + " não respondida");
+        }
+    });
+    
+    return errors;
+}
+
+// Gera relatório de QA
+function generateQAReport() {
+    var report = {
+        surveyId: Survey.Settings.SurveyID,
+        version: Survey.Settings.SurveyVersion,
+        testDate: new Date().toISOString(),
+        errors: validateSurveyLogic(),
+        warnings: [],
+        stats: {
+            completionRate: calculateCompletionRate(),
+            avgTime: calculateAverageTime(),
+            dropoffPoints: identifyDropoffPoints()
+        }
+    };
+    
+    // Adiciona avisos para questões com baixa resposta
+    if (report.stats.completionRate < 0.7) {
+        report.warnings.push("Taxa de conclusão abaixo do esperado");
+    }
+    
+    return report;
+}
