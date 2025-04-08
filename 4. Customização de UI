@@ -1,0 +1,58 @@
+<!-- questionarios/pesquisa-mercado/custom_questions.html -->
+<div id="custom-brand-question">
+    <h3 class="brand-header">Qual destas marcas você mais associa com os seguintes atributos?</h3>
+    
+    <table class="brand-matrix">
+        <thead>
+            <tr>
+                <th>Atributo/Marca</th>
+                <th>Marca A</th>
+                <th>Marca B</th>
+                <th>Marca C</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Inovação</td>
+                <td><input type="radio" name="inovacao" value="1"></td>
+                <td><input type="radio" name="inovacao" value="2"></td>
+                <td><input type="radio" name="inovacao" value="3"></td>
+            </tr>
+            <!-- Mais linhas... -->
+        </tbody>
+    </table>
+</div>
+
+<style>
+/* questionarios/pesquisa-mercado/estilos-css/custom.css */
+.brand-header {
+    color: #2A5CAA;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.brand-matrix {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.brand-matrix th {
+    background-color: #f5f5f5;
+    padding: 10px;
+    text-align: center;
+}
+
+.brand-matrix td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+/* Estilo para mobile */
+@media (max-width: 768px) {
+    .brand-matrix {
+        display: block;
+        overflow-x: auto;
+    }
+}
+</style>
