@@ -1,0 +1,24 @@
+// questionarios/pesquisa-mercado/main.js
+// Configuração inicial do questionário
+Survey.Settings = {
+    Title: "Pesquisa de Satisfação do Cliente 2023",
+    SurveyID: "CSAT2023",
+    SurveyVersion: "1.0",
+    CloseSurveyOnCompletion: true,
+    ShowNavigationButtons: "both"
+};
+
+// Variáveis globais
+var currentSegment = "";
+var quotaCounts = {};
+
+// Inicialização
+Survey.OnInit = function() {
+    // Carrega dados de quota da API
+    loadQuotaData();
+    
+    // Configura dispositivo móvel
+    if (isMobileDevice()) {
+        Survey.SetStyle("mobile.css");
+    }
+};
