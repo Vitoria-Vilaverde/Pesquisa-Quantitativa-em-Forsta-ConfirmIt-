@@ -1,0 +1,22 @@
+# Checklist de Controle de Qualidade
+
+## Lógica do Questionário
+- [ ] Todas as rotas condicionais funcionam corretamente
+- [ ] Randomizações estão distribuindo respondentes igualmente
+- [ ] Quotas estão sendo respeitadas
+- [ ] Perguntas de filtro estão redirecionando corretamente
+
+## Validações
+- [ ] Validações de formato (email, telefone) estão funcionando
+- [ ] Mensagens de erro são claras e úteis
+- [ ] Questões obrigatórias não podem ser puladas
+
+## Experiência do Usuário
+- [ ] Questionário é responsivo em dispositivos móveis
+- [ ] Tempo médio de completude dentro do esperado
+- [ ] Nenhuma pergunta redundante ou duplicada
+
+## Dados
+- [ ] Todas as respostas estão sendo registradas corretamente
+- [ ] Metadados (timestamp, device, etc.) estão sendo coletados
+- [ ] Dados estão estruturados para análise
