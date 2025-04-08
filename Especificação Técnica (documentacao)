@@ -1,0 +1,26 @@
+# Especificação Técnica do Questionário
+
+## Visão Geral
+- **Título**: Pesquisa de Satisfação do Cliente 2023
+- **Público-alvo**: Clientes ativos nos últimos 6 meses
+- **Método**: Online (web e mobile)
+- **Duração estimada**: 8 minutos
+
+## Fluxo do Questionário
+1. **Triagem**: Verificar elegibilidade (Q0)
+2. **Segmentação**: Classificar tipo de cliente (Q1)
+3. **Avaliação principal**: 
+   - Satisfação geral (Q3)
+   - Satisfação por atributo (Q4-Q7)
+4. **Dados demográficos**: Perfil do respondente (D1-D5)
+
+## Lógicas Especiais
+- **Randomização**: Ordem de blocos de atributos
+- **Rotas condicionais**: 
+  - Clientes premium → perguntas adicionais (Q2a)
+  - Clientes regulares → perguntas padrão (Q2b)
+- **Quotas**: Máximo de 200 respondentes por segmento
+
+## Integrações
+- **CRM**: Envio de dados via API ao completar
+- **Painel de resultados**: Atualização em tempo real
