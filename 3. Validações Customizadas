@@ -1,0 +1,36 @@
+// questionarios/pesquisa-mercado/validations.js
+// Validação customizada para email
+function validateEmail(email) {
+    var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+// Validação de número de telefone
+Survey.OnValidate = function(question, answer) {
+    switch (question) {
+        case "email":
+            if (!validateEmail(answer)) {
+                Survey.Alert("Por favor, insira um endereço de email válido.");
+                return false;
+            }
+            break;
+            
+        case "phone":
+            if (answer.replace(/\D/g, '').length < 10) {
+                Survey.Alert("O telefone deve conter pelo menos 10 dígitos.");
+                return false;
+            }
+            break;
+    }
+    return true;
+};
+
+// Verificação de quotas
+function checkQuotas(segment) {
+    if (quotaCounts[segment] >= quotaLimits[segment]) {
+        Survey.Show("quotaFull");
+        Survey.Terminate();
+        return false;
+    }
+    return true;
+}
